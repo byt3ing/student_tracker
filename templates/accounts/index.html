@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debadhwani Kolkata</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8fafc;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: #1e3a8a;
+      padding: 20px 40px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 35px;
+      font-weight: 600;
+    }
+
+    /* Navigation */
+    nav a {
+      color: #f9fafb;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #93c5fd;
+    }
+    nav .username {
+      font-weight: 600;
+      margin-left: 15px;
+    }
+
+    /* Main */
+    main {
+      flex: 1; /* ensures footer sticks at bottom */
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: auto;
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      main {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 18px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    /* Buttons */
+    .card button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .card button:hover {
+      transform: scale(1.05);
+    }
+    .add-student { background: #2563eb; color: white; }
+    .add-student:hover { background: #1d4ed8; }
+    .add-exam { background: #16a34a; color: white; }
+    .add-exam:hover { background: #15803d; }
+
+    /* Footer */
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 14px;
+      margin-top: auto; /* pushes footer down */
+    }
+    footer p {
+      margin: 5px 0;
+    }
+    footer a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .username{
+      padding: 2px 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Debadhwani Kolkata</h1>
+    <nav>
+      <a href="{% url 'home' %}">Home</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Log out</a>
+        <span class="username">Hello, {{ user.username }}</span>
+      {% else %}
+        <a href="{% url 'signup' %}">Sign Up</a>
+        <a href="{% url 'login' %}">Log in</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    {% if user.is_staff %}
+      <!-- Add Student -->
+      <div class="card">
+        <h2>Add New Student</h2>
+        <p>Register a new student to the database.</p>
+        <a href="/admin/accounts/student/add/">
+          <button class="add-student">Add Student</button>
+        </a>
+      </div>
+
+      <!-- Add Exam -->
+      <div class="card">
+        <h2>Add Exam</h2>
+        <p>Schedule or register a new exam.</p>
+        <a href="/admin/accounts/examregistration/add/">
+          <button class="add-exam">Add Exam</button>
+        </a>
+      </div>
+    {% endif %}
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Email: <a href="mailto:info@debadhwani.org">info@debadhwani.org</a></p>
+    <p>Phone: +91 98765 43210</p>
+    <p>© 2025 Debadhwani Kolkata. All rights reserved.</p>
+  </footer>
+</body>
+</html>
