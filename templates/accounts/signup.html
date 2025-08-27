@@ -1,0 +1,72 @@
+{% extends "accounts/base.html" %}
+{% block title %}Sign Up | ADHD Tracker{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+    <h2>Create an Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+    <p class="center-link">
+        Already have an account? <a href="{% url 'login' %}">Log In</a>
+    </p>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+    .signup-container {
+        background: #fff;
+        padding: 2rem 3rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    form p {
+        margin-bottom: 1rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0.75rem;
+        background-color: #28a745;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    .errorlist {
+        color: red;
+        font-size: 0.9rem;
+    }
+
+    .center-link {
+        text-align: center;
+        margin-top: 1rem;
+    }
+</style>
+{% endblock %}

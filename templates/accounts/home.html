@@ -1,0 +1,57 @@
+{% extends "accounts/base.html" %}
+{% block title %}Welcome | ADHD Tracker{% endblock %}
+
+{% block content %}
+<div class="main-box">
+    <h1>Welcome to ADHD Tracker</h1>
+    <p>Track habits, stay organized, and manage your ADHD with clarity.</p>
+    <div class="btn-container">
+        <a class="btn" href="{% url 'signup' %}">Sign Up</a>
+        <a class="btn" href="{% url 'login' %}">Log In</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+    .main-box {
+        text-align: center;
+        background-color: white;
+        padding: 2rem 3rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    p {
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .btn-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
